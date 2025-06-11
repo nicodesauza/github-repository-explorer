@@ -7,7 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Search, History } from "lucide-react";
+import { Search, History, ServerCog } from "lucide-react";
 import { UserRepo } from "./components/user-repo";
 import { BarLoader } from "react-spinners";
 import { cn } from "@/lib/utils";
@@ -24,22 +24,21 @@ export const Home = () => {
     setShowSuggestion,
     searchRef,
     clearHistory,
-    isMiddle,
+    isList,
+    isError,
   } = useHome();
-
-  console.log(isMiddle, "isMiddle");
 
   return (
     <div
       className={cn(
         "min-h-screen min-w-screen px-20 md:px-48",
-        !isMiddle ? "py-10 md:py-12" : "flex justify-center items-center pb-32"
+        isList ? "py-10 md:py-12" : "flex justify-center items-center pb-32"
       )}
     >
       <div
         className={cn(
           "w-full",
-          !isMiddle ? "md:w-[800px] md:max-w-full" : "md:w-[600px]"
+          isList ? "md:w-[800px] md:max-w-full" : "md:w-[600px]"
         )}
       >
         <form
@@ -58,7 +57,12 @@ export const Home = () => {
             showClearButton
             placeholder="Search user"
             suffixIcon={
-              <Button type="submit" variant={"link"} className=" z-20">
+              <Button
+                type="submit"
+                variant={"link"}
+                className="z-20"
+                data-testid="submit-search"
+              >
                 <Search className="cursor-pointer w-4 h-4 text-red-400" />
               </Button>
             }
@@ -101,27 +105,44 @@ export const Home = () => {
             </div>
           )}
 
-          <BarLoader color="#2671d9" loading={isLoading} className="!w-full" />
+          {isLoading && (
+            <BarLoader
+              data-testid="loader"
+              color="#2671d9"
+              loading
+              className="!w-full"
+            />
+          )}
         </form>
 
-        <Accordion type="single" collapsible={true} className="px-2">
-          {searchResult.map((item) => {
-            return (
-              <AccordionItem value={item.login} key={item.login}>
-                <AccordionTrigger className="rounded-none border-b-2 py-3">
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="text-xl text-default font-semibold">
-                      {item.login}
+        {isError ? (
+          <div
+            data-testid="error-response"
+            className="space-y-3 w-full flex flex-col justify-center items-center py-10"
+          >
+            <ServerCog color="red" className="w-24 h-24" />
+            <p className="text-red-600">Something went wrong.</p>
+          </div>
+        ) : (
+          <Accordion type="single" collapsible={true} className="px-2">
+            {searchResult.map((item) => {
+              return (
+                <AccordionItem value={item.login} key={item.login}>
+                  <AccordionTrigger className="rounded-none border-b-2 py-3">
+                    <div className="flex items-center gap-2 w-full">
+                      <div className="text-xl text-default font-semibold">
+                        {item.login}
+                      </div>
                     </div>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="max-h-96 overflow-auto">
-                  <UserRepo userLogin={item.login} />
-                </AccordionContent>
-              </AccordionItem>
-            );
-          })}
-        </Accordion>
+                  </AccordionTrigger>
+                  <AccordionContent className="max-h-96 overflow-auto">
+                    <UserRepo userLogin={item.login} />
+                  </AccordionContent>
+                </AccordionItem>
+              );
+            })}
+          </Accordion>
+        )}
       </div>
     </div>
   );

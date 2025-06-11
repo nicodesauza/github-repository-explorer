@@ -1,24 +1,11 @@
-import useGetData from "@/lib/hooks/useGet";
-import { useEffect, useRef, useState } from "react";
-import type { ListGitHubUser } from "./home.types";
-import { API_ENDPOINT } from "@/lib/constants/api-urls";
 import type { BaseQueryParams } from "@/lib/types/response.type";
+import { useEffect, useRef, useState } from "react";
+import { useSearchParamsSync } from "./hooks/use-search-params-sync";
+import { useSearchKeyword } from "./hooks/use-search-keyword";
+import { useGitHubSearch } from "./hooks/use-github-search";
 import { useSearchHistoryStore } from "@/lib/store/search-store";
-import { useSearchParams } from "react-router-dom";
 
 export const useHome = () => {
-  const {
-    GITHUB_USER: { SEARCH },
-  } = API_ENDPOINT;
-  const { addKeyword, clearHistory, getSortedKeywords, history } =
-    useSearchHistoryStore();
-
-  const [query, setQuery] = useSearchParams();
-  const queryFlag = query.get("q");
-
-  const [suggestions, setSuggestions] = useState<string[]>([]);
-  const [showSuggestion, setShowSuggestion] = useState(false);
-
   const [keyword, setKeyword] = useState("");
   const [params, setParams] = useState<BaseQueryParams>({
     q: "",
@@ -26,37 +13,23 @@ export const useHome = () => {
     per_page: 5,
   });
   const searchRef = useRef<HTMLInputElement>(null);
+  const [showSuggestion, setShowSuggestion] = useState(false);
 
-  useEffect(() => {
-    handleChangeKeyword(keyword);
-  }, [history, getSortedKeywords, keyword]);
+  const { queryFlag, updateQuery } = useSearchParamsSync();
+  const suggestions = useSearchKeyword(keyword);
+  const {
+    data: response,
+    isLoading,
+    isFetching,
+    isError,
+  } = useGitHubSearch(params);
+  const { addKeyword, clearHistory } = useSearchHistoryStore();
 
   useEffect(() => {
     if (queryFlag) {
       handleSearch(queryFlag);
     }
   }, [queryFlag]);
-
-  const {
-    data: response,
-    isLoading,
-    isFetching,
-  } = useGetData<ListGitHubUser>([SEARCH, JSON.stringify(params)], SEARCH, {
-    params,
-    options: {
-      enabled: !!params.q,
-    },
-  });
-
-  const handleChangeKeyword = (keyword: string) => {
-    setKeyword(keyword);
-    const sortedKeywords = getSortedKeywords();
-    setSuggestions(
-      sortedKeywords.filter((item) =>
-        item.toLowerCase().includes(keyword.toLowerCase())
-      )
-    );
-  };
 
   const handleSearch = (keyword: string) => {
     setKeyword(keyword);
@@ -65,15 +38,10 @@ export const useHome = () => {
     searchRef.current?.blur?.();
   };
 
-  const onClickSearch = (keyword: string) => {
-    const newQuery = new URLSearchParams();
-    newQuery.set("q", keyword);
-    setQuery(newQuery);
-  };
+  const onClickSearch = (keyword: string) => updateQuery(keyword);
 
   return {
     searchResult: response?.items ?? [],
-    isMiddle: !!queryFlag || queryFlag === "",
     keyword,
     setKeyword,
     handleSearch,
@@ -82,8 +50,9 @@ export const useHome = () => {
     showSuggestion,
     setShowSuggestion,
     onClickSearch,
-    queryFlag,
     searchRef,
     clearHistory,
+    isList: !!queryFlag || queryFlag === "",
+    isError,
   };
 };
