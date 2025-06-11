@@ -6,7 +6,6 @@ import { BASE_API_URL } from "@/lib/constants/common";
 const axiosInstance = <T>(): AxiosInstance => {
   const axiosClient = axios.create();
 
-  // axiosClient.defaults.withCredentials = true;
   axiosClient.defaults.baseURL = BASE_API_URL;
 
   axiosClient.defaults.headers.common = {
@@ -25,18 +24,6 @@ const axiosInstance = <T>(): AxiosInstance => {
   axiosClient.interceptors.response.use(
     (res) => res,
     (err) => {
-      // const originalConfig = err.config;
-      // if (originalConfig.url !== PAGE_URLS.AUTH.LOGIN && err.response) {
-      //   // Access Token was expired
-      //   if (
-      //     err.response.status === HttpStatusCode.Unauthorized &&
-      //     !originalConfig.retry
-      //   ) {
-      //     originalConfig.retry = true;
-      //     return Promise.reject(err);
-      //   }
-      // }
-
       return Promise.reject(err);
     }
   );

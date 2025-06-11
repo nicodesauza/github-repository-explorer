@@ -15,10 +15,6 @@ export const useUserRepo = (props: UserRepoProps) => {
     options: {
       enabled: !!userLogin,
     },
-    // options: {
-    //   initialData: generalListResponse,
-    // },
-    // normalizer,
   });
 
   const isEmptyState = data.length <= 0 && !isFetching && !isLoading;

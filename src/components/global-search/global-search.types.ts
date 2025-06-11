@@ -1,5 +1,9 @@
 import type { BaseListResponse } from "@/lib/types/response.type";
 
+export type GlobalSearchProps = {
+  onSearch?: (keyword: string) => void;
+};
+
 export type GitHubUser = {
   login: string;
   id: number;

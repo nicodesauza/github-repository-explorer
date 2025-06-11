@@ -1,21 +1,21 @@
 import { cn } from "@/lib/utils";
 import { GlobalSearch } from "@/components/global-search/global-search";
-import { useNavigate } from "react-router-dom";
+import { useSearchParamsSync } from "@/components/global-search/hooks/use-search-params-sync";
 
-export const Home = () => {
-  const navigate = useNavigate();
+export const Search = () => {
+  const { updateQuery } = useSearchParamsSync();
 
   return (
     <div
       className={cn(
         "min-h-screen min-w-screen px-20 md:px-48",
-        "flex justify-center items-center pb-32"
+        "py-10 md:py-12"
       )}
     >
-      <div className={cn("w-full", "md:w-[600px]")}>
+      <div className={cn("w-full", "md:w-[800px] md:max-w-full")}>
         <GlobalSearch
           onSearch={(keyword) => {
-            navigate("/search?q=" + keyword);
+            updateQuery(keyword);
           }}
         />
       </div>
