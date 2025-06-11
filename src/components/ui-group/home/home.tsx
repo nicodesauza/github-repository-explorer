@@ -10,12 +10,6 @@ import {
 import { Search, History } from "lucide-react";
 import { UserRepo } from "./components/user-repo";
 import { BarLoader } from "react-spinners";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { useEffect, useRef, useState } from "react";
 
 export const Home = () => {
   const {
