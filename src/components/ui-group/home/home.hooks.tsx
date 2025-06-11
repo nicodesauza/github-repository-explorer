@@ -63,8 +63,6 @@ export const useHome = () => {
     searchRef.current?.blur?.();
   };
 
-  const handleClickSuggestion = (suggestion) => {};
-
   return {
     searchResult: response?.items ?? [],
     keyword,
@@ -74,9 +72,7 @@ export const useHome = () => {
     suggestions,
     showSuggestion,
     setShowSuggestion,
-    // handleChangeKeyword,
     searchRef,
-    handleClickSuggestion,
     clearHistory,
   };
 };
