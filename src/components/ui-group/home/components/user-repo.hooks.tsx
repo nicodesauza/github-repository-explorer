@@ -1,5 +1,8 @@
 import useGetData from "@/lib/hooks/useGet";
+import { useState } from "react";
+import type { ListGitHubUser } from "./home.types";
 import { API_ENDPOINT } from "@/lib/constants/api-urls";
+import type { BaseQueryParams } from "@/lib/types/response.type";
 import type { ListUserRepos, UserRepoProps } from "./user-repo.types";
 
 export const useUserRepo = (props: UserRepoProps) => {

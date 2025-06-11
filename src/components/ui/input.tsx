@@ -31,7 +31,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
     React.useImperativeHandle(ref, () => inputRef.current as HTMLInputElement);
-    const [currentVal, setCurrentVal] = React.useState(value);
     return (
       <div className={cn("relative w-full", classNameWrapper)}>
         {prefixIcon && (
@@ -53,7 +52,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           value={value}
           onChange={(val) => {
             onChange?.(val);
-            setCurrentVal(val.target.value);
           }}
           ref={inputRef}
           {...props}
@@ -64,14 +62,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           )}
         >
           <div className="h-full flex items-center justify-center ">
-            {showClearButton && !!currentVal && (
+            {showClearButton && !!value && (
               <Button
                 type="button"
                 variant="link"
                 className="p-0"
                 onMouseDown={(e) => {
                   e.preventDefault();
-                  setCurrentVal(undefined);
                   if (inputRef.current) {
                     inputRef.current.value = "";
                   }

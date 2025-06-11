@@ -4,7 +4,6 @@ import type { ListGitHubUser } from "./home.types";
 import { API_ENDPOINT } from "@/lib/constants/api-urls";
 import type { BaseQueryParams } from "@/lib/types/response.type";
 import { useSearchHistoryStore } from "@/lib/store/search-store";
-import { useSearchParams } from "react-router-dom";
 
 export const useHome = () => {
   const {
@@ -12,9 +11,6 @@ export const useHome = () => {
   } = API_ENDPOINT;
   const { addKeyword, clearHistory, getSortedKeywords, history } =
     useSearchHistoryStore();
-
-  const [query, setQuery] = useSearchParams();
-  const queryFlag = query.get("q");
 
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestion, setShowSuggestion] = useState(false);
@@ -25,17 +21,15 @@ export const useHome = () => {
     page: 1,
     per_page: 5,
   });
-  const searchRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     handleChangeKeyword(keyword);
+    // const sortedKeywords = getSortedKeywords();
+    // setSuggestions(sortedKeywords);
+    // console.log("kok engga");
   }, [history, getSortedKeywords, keyword]);
 
-  useEffect(() => {
-    if (queryFlag) {
-      handleSearch(queryFlag);
-    }
-  }, [queryFlag]);
+  const searchRef = useRef<HTMLInputElement>(null);
 
   const {
     data: response,
@@ -46,6 +40,10 @@ export const useHome = () => {
     options: {
       enabled: !!params.q,
     },
+    // options: {
+    //   initialData: generalListResponse,
+    // },
+    // normalizer,
   });
 
   const handleChangeKeyword = (keyword: string) => {
@@ -65,15 +63,10 @@ export const useHome = () => {
     searchRef.current?.blur?.();
   };
 
-  const onClickSearch = (keyword: string) => {
-    const newQuery = new URLSearchParams();
-    newQuery.set("q", keyword);
-    setQuery(newQuery);
-  };
+  const handleClickSuggestion = (suggestion) => {};
 
   return {
     searchResult: response?.items ?? [],
-    isMiddle: !!queryFlag || queryFlag === "",
     keyword,
     setKeyword,
     handleSearch,
@@ -81,9 +74,9 @@ export const useHome = () => {
     suggestions,
     showSuggestion,
     setShowSuggestion,
-    onClickSearch,
-    queryFlag,
+    // handleChangeKeyword,
     searchRef,
+    handleClickSuggestion,
     clearHistory,
   };
 };

@@ -1,54 +1,80 @@
-# React + TypeScript + Vite
+# 🚀 Github Repositories Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web application built with **React**, **Vite**, **TypeScript**, and **shadcn/ui**.  
+Designed for performance, accessibility, and an elegant developer experience.
 
-Currently, two official plugins are available:
+![Preview](./public/preview.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[![Vercel Deployment](https://vercel.com/button)](https://vercel.com/import/project?template=vite)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-## Expanding the ESLint configuration
+## ✨ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ⚛️ **React** – Declarative UI library
+- ⚡️ **Vite** – Lightning-fast build tool
+- 🧠 **TypeScript** – Type-safe development
+- 🎨 **shadcn/ui** – Beautiful, accessible UI components powered by Tailwind CSS & Radix UI
+- ☁️ **Vercel** – Serverless & zero-config deployment
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📦 Installation
+
+```bash
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
+yarn install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 💻 Develpment
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+yarn dev
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## 🏗️ Build
+
+```bash
+yarn build
+```
+
+## 🚀 Deployment (Vercel)
+
+```bash
+🔁 Auto Deploy via GitHub
+Push your project to GitHub.
+
+Go to https://vercel.com/import
+
+Select your repository.
+
+Vercel will auto-detect Vite & set:
+
+Framework Preset: Vite
+
+Build Command: yarn build
+
+Output Directory: dist
+
+Click Deploy 🚀
+```
+
+## 📁 Project Structure
+
+```bash
+src/
+├─ components/     # Reusable UI components (including shadcn)
+├─ pages/          # Page-level components (if using routing)
+├─ hooks/          # Custom React hooks
+├─ lib/            # Utilities, API clients, helpers
+├─ styles/         # Tailwind + custom styles
+├─ App.tsx         # Main app wrapper
+└─ main.tsx        # Vite entry point
+```
+
+## 💅 Using shadcn/ui
+
+This project integrates shadcn/ui for accessible, elegant UI components.
+To add a new component:
+
+```bash
+npx shadcn-ui@latest add button
 ```
