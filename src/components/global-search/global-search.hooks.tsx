@@ -44,7 +44,10 @@ export const useGlobalSearch = (props: GlobalSearchProps) => {
   };
 
   const isEmptyState =
-    (response?.items?.length ?? 0) <= 0 && !isFetching && !isLoading;
+    (response?.items?.length ?? 0) <= 0 &&
+    !isFetching &&
+    !isLoading &&
+    params.q;
 
   return {
     searchResult: response?.items ?? [],
