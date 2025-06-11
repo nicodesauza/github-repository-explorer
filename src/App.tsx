@@ -1,9 +1,9 @@
-import { Home } from "./features/home/home";
+import { MainRoutes } from "./routes";
 
 function App() {
   return (
     <>
-      <Home />
+      <MainRoutes />
     </>
   );
 }

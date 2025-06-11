@@ -1,7 +1,7 @@
 import { API_ENDPOINT } from "@/lib/constants/api-urls";
 import useGetData from "@/lib/hooks/useGet";
 import type { BaseQueryParams } from "@/lib/types/response.type";
-import type { ListGitHubUser } from "../home.types";
+import type { ListGitHubUser } from "../global-search.types";
 
 export const useGitHubSearch = (params: BaseQueryParams) => {
   const {

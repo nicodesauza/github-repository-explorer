@@ -6,8 +6,8 @@ import { Home } from "./home";
 import "@testing-library/jest-dom/jest-globals";
 import "@testing-library/jest-dom";
 
-import * as githubSearchHook from "./hooks/use-github-search";
-jest.mock("./hooks/use-github-search");
+import * as githubSearchHook from "@/components/global-search/hooks/use-github-search";
+jest.mock("@/components/global-search/hooks/use-github-search");
 
 const mockedUseGitHubSearch = githubSearchHook.useGitHubSearch as jest.Mock;
 
@@ -51,6 +51,17 @@ describe("Home page", () => {
 
     renderHome();
     expect(screen.getByTestId("loader")).toBeInTheDocument();
+  });
+
+  it("displays empty state when data is empty", () => {
+    mockedUseGitHubSearch.mockImplementation(() => ({
+      data: null,
+      isLoading: false,
+      isError: false,
+    }));
+
+    renderHome();
+    expect(screen.getByTestId("empty-state")).toBeInTheDocument();
   });
 
   it("displays GitHub results", async () => {

@@ -4,8 +4,9 @@ import { useSearchParamsSync } from "./hooks/use-search-params-sync";
 import { useSearchKeyword } from "./hooks/use-search-keyword";
 import { useGitHubSearch } from "./hooks/use-github-search";
 import { useSearchHistoryStore } from "@/lib/store/search-store";
+import type { GlobalSearchProps } from "./global-search.types";
 
-export const useHome = () => {
+export const useGlobalSearch = (props: GlobalSearchProps) => {
   const [keyword, setKeyword] = useState("");
   const [params, setParams] = useState<BaseQueryParams>({
     q: "",
@@ -15,7 +16,7 @@ export const useHome = () => {
   const searchRef = useRef<HTMLInputElement>(null);
   const [showSuggestion, setShowSuggestion] = useState(false);
 
-  const { queryFlag, updateQuery } = useSearchParamsSync();
+  const { queryFlag } = useSearchParamsSync();
   const suggestions = useSearchKeyword(keyword);
   const {
     data: response,
@@ -38,7 +39,12 @@ export const useHome = () => {
     searchRef.current?.blur?.();
   };
 
-  const onClickSearch = (keyword: string) => updateQuery(keyword);
+  const onClickSearch = (keyword: string) => {
+    props.onSearch?.(keyword);
+  };
+
+  const isEmptyState =
+    (response?.items?.length ?? 0) <= 0 && !isFetching && !isLoading;
 
   return {
     searchResult: response?.items ?? [],
@@ -52,7 +58,7 @@ export const useHome = () => {
     onClickSearch,
     searchRef,
     clearHistory,
-    isList: !!queryFlag || queryFlag === "",
     isError,
+    isEmptyState,
   };
 };
