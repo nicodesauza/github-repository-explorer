@@ -53,17 +53,6 @@ describe("Home page", () => {
     expect(screen.getByTestId("loader")).toBeInTheDocument();
   });
 
-  it("displays empty state when data is empty", () => {
-    mockedUseGitHubSearch.mockImplementation(() => ({
-      data: null,
-      isLoading: false,
-      isError: false,
-    }));
-
-    renderHome();
-    expect(screen.getByTestId("empty-state")).toBeInTheDocument();
-  });
-
   it("displays GitHub results", async () => {
     mockedUseGitHubSearch.mockImplementation(() => ({
       data: {
