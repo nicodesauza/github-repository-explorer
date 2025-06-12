@@ -39,6 +39,7 @@ yarn build
 
 ## 📁 Project Structure
 
+```bash
 src/
 ├─ components/ # Reusable UI components (including shadcn)
 ├─ pages/ # Page-level components (if using routing)
@@ -46,6 +47,7 @@ src/
 ├─ lib/ # Utilities, API clients, helpers
 ├─ App.tsx # Main app wrapper
 └─ main.tsx # Vite entry point
+```
 
 ## 🧪 Unit Testing
 
