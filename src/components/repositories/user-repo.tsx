@@ -12,6 +12,7 @@ import { useUserRepo } from "./user-repo.hooks";
 import { BarLoader } from "react-spinners";
 import { cn } from "@/lib/utils";
 import { LANGUAGE_COLORS } from "@/lib/constants/language-colors";
+import { formatDate } from "date-fns";
 
 export function UserRepo(props: UserRepoProps) {
   const { data, isLoading, isEmptyState } = useUserRepo(props);
@@ -46,24 +47,30 @@ export function UserRepo(props: UserRepoProps) {
                   </Badge>
                 </div>
                 <div className="flex space-x-5 items-center mt-2">
+                  {item.language && (
+                    <div className="flex space-x-1 items-center">
+                      <div
+                        className={cn("w-2 h-2 bg-blue-900 rounded-full")}
+                        style={{
+                          backgroundColor: LANGUAGE_COLORS[item.language],
+                        }}
+                      ></div>
+                      <p className="text-xs font-light">{item.language}</p>
+                    </div>
+                  )}
                   <div className="flex space-x-1 items-center">
-                    <div
-                      className={cn("w-2 h-2 bg-blue-900 rounded-full")}
-                      style={{
-                        backgroundColor: LANGUAGE_COLORS[item.language],
-                      }}
-                    ></div>
-                    <p className="text-xs font-light">{item.language}</p>
-                  </div>
-                  <div className="flex space-x-1 items-center">
-                    <p className="text-xs font-light">{item.updated_at}</p>
+                    <p className="text-xs font-light">
+                      {formatDate(item.updated_at, "yyyy-MM-dd")}
+                    </p>
                   </div>
                 </div>
               </CardTitle>
 
               <CardAction className="flex items-center space-x-1">
-                <p className="text-sm">{item.stargazers_count}</p>
-                <StarIcon className="w-4 h-4 mb-0.5" />
+                <p className="text-sm text-yellow-500 font-semibold">
+                  {item.stargazers_count}
+                </p>
+                <StarIcon className="w-4 h-4 mb-0.5 text-yellow-500 font-bold" />
               </CardAction>
             </CardHeader>
             <CardContent>

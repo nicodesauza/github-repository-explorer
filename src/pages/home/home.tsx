@@ -10,7 +10,7 @@ export const Home = () => {
       className={cn(
         "min-h-screen min-w-screen px-20 md:px-48",
         "flex flex-col justify-center items-center pb-40 space-y-8",
-        "bg-[url('/images/background.jpg')] bg-cover bg-center"
+        "bg-[url('/images/background.webp')] bg-cover bg-center"
       )}
     >
       <div className="text-center">

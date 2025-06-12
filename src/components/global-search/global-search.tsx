@@ -53,7 +53,7 @@ export const GlobalSearch = (props: GlobalSearchProps) => {
               className="z-20"
               data-testid="submit-search"
             >
-              <Search className="cursor-pointer w-4 h-4 text-red-400" />
+              <Search className="cursor-pointer w-4 h-4 text-blue-500" />
             </Button>
           }
         />

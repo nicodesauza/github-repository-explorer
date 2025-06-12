@@ -3,7 +3,7 @@
 A modern web application built with **React**, **Vite**, **TypeScript**, and **shadcn/ui**.  
 Designed for performance, accessibility, and an elegant developer experience.
 
-![Preview](./public/preview.png)
+![Preview](./public/preview.webp)
 
 [![Vercel Deployment](https://vercel.com/button)](https://vercel.com/import/project?template=vite)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
@@ -67,6 +67,40 @@ src/
 ├─ lib/            # Utilities, API clients, helpers
 ├─ App.tsx         # Main app wrapper
 └─ main.tsx        # Vite entry point
+```
+
+## 🧪 Unit Testing
+
+```bash
+This project includes unit tests to ensure code reliability and maintainability.
+
+📦 Tech Stack
+Jest – JavaScript Testing Framework
+
+React Testing Library – For testing React components
+
+🚀 Running Tests
+
+# Run all unit tests
+yarn test
+
+```
+
+## 🧪 Writing a New Test
+
+```bash
+Place your test files alongside your components or inside a __tests__ directory, using .test.tsx or .test.ts suffix.
+
+Example: my-component.test.tsx
+
+import { render, screen } from '@testing-library/react';
+import MyComponent from './my-component';
+
+test('renders the correct text', () => {
+  render(<MyComponent />);
+  expect(screen.getByText(/hello world/i)).toBeInTheDocument();
+});
+
 ```
 
 ## 💅 Using shadcn/ui
