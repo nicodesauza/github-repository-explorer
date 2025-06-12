@@ -9,9 +9,10 @@ export const Home = () => {
     <div
       className={cn(
         "min-h-screen min-w-screen px-20 md:px-48",
-        "flex justify-center items-center pb-32"
+        "flex flex-col justify-center items-center pb-40"
       )}
     >
+      <div className="text-2xl mb-4">Github Repositories Explorer</div>
       <div className={cn("w-full", "md:w-[600px]")}>
         <GlobalSearch
           onSearch={(keyword) => {

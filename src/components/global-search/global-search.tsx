@@ -11,6 +11,7 @@ import { Search, History, ServerCog, Frown } from "lucide-react";
 import { BarLoader } from "react-spinners";
 import type { GlobalSearchProps } from "./global-search.types";
 import { UserRepo } from "../repositories/user-repo";
+import highlightText from "@/lib/utils/highlight";
 
 export const GlobalSearch = (props: GlobalSearchProps) => {
   const {
@@ -75,7 +76,7 @@ export const GlobalSearch = (props: GlobalSearchProps) => {
                     }}
                   >
                     <History className="w-3.5 h-3.5" />
-                    <p key={suggestion}>{suggestion}</p>
+                    <p key={suggestion}>{highlightText(suggestion, keyword)}</p>
                   </Button>
                   <Button
                     type="button"
@@ -125,9 +126,9 @@ export const GlobalSearch = (props: GlobalSearchProps) => {
           {searchResult.map((item) => {
             return (
               <AccordionItem value={item.login} key={item.login}>
-                <AccordionTrigger className="rounded-none border-b-2 py-3">
+                <AccordionTrigger className="rounded-none hover:cursor-pointer border-b-2 py-3">
                   <div className="flex items-center gap-2 w-full">
-                    <div className="text-xl text-default font-semibold">
+                    <div className="text-sm text-default font-semibold">
                       {item.login}
                     </div>
                   </div>

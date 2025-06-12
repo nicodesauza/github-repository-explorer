@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { Home } from "./features/home/home";
-import { Search } from "./features/search/search";
+import { Home } from "./pages/home/home";
+import { Search } from "./pages/search/search";
 
 export const MainRoutes = () => {
   return (

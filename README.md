@@ -65,7 +65,6 @@ src/
 ├─ pages/          # Page-level components (if using routing)
 ├─ hooks/          # Custom React hooks
 ├─ lib/            # Utilities, API clients, helpers
-├─ styles/         # Tailwind + custom styles
 ├─ App.tsx         # Main app wrapper
 └─ main.tsx        # Vite entry point
 ```
