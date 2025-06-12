@@ -3,9 +3,10 @@
 A modern web application built with **React**, **Vite**, **TypeScript**, and **shadcn/ui**.  
 Designed for performance, accessibility, and an elegant developer experience.
 
+[![Live](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge)](https://github-repository-explorer-riio.vercel.app/)
+
 ![Preview](./public/preview.webp)
 
-[![Vercel Deployment](https://vercel.com/button)](https://vercel.com/import/project?template=vite)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 ## ✨ Tech Stack
@@ -19,8 +20,8 @@ Designed for performance, accessibility, and an elegant developer experience.
 ## 📦 Installation
 
 ```bash
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
+git clone https://github.com/nicodesauza/github-repository-explorer.git
+cd github-repository-explorer
 yarn install
 ```
 
@@ -34,27 +35,6 @@ yarn dev
 
 ```bash
 yarn build
-```
-
-## 🚀 Deployment (Vercel)
-
-```bash
-🔁 Auto Deploy via GitHub
-Push your project to GitHub.
-
-Go to https://vercel.com/import
-
-Select your repository.
-
-Vercel will auto-detect Vite & set:
-
-Framework Preset: Vite
-
-Build Command: yarn build
-
-Output Directory: dist
-
-Click Deploy 🚀
 ```
 
 ## 📁 Project Structure
