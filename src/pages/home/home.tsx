@@ -8,13 +8,13 @@ export const Home = () => {
   return (
     <div
       className={cn(
-        "min-h-screen min-w-screen px-20 md:px-48",
+        "min-h-screen min-w-screen px-10 md:px-48",
         "flex flex-col justify-center items-center pb-40 space-y-8",
         "bg-[url('/images/background.webp')] bg-cover bg-center"
       )}
     >
       <div className="text-center">
-        <p className="text-5xl text-gray-500 mb-2">
+        <p className="md:text-5xl text-2xl text-gray-500 mb-2">
           Github Repositories Explorer
         </p>
         <p className="text-gray-700 text-xl font-normal">
