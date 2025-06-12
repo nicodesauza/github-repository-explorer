@@ -5,7 +5,7 @@ Designed for performance, accessibility, and an elegant developer experience.
 
 [![Live](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge)](https://github-repository-explorer-riio.vercel.app/)
 
-![Preview](./public/preview.webp)
+![Preview](./public/images/preview.webp)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
@@ -39,19 +39,16 @@ yarn build
 
 ## 📁 Project Structure
 
-```bash
 src/
-├─ components/     # Reusable UI components (including shadcn)
-├─ pages/          # Page-level components (if using routing)
-├─ hooks/          # Custom React hooks
-├─ lib/            # Utilities, API clients, helpers
-├─ App.tsx         # Main app wrapper
-└─ main.tsx        # Vite entry point
-```
+├─ components/ # Reusable UI components (including shadcn)
+├─ pages/ # Page-level components (if using routing)
+├─ hooks/ # Custom React hooks
+├─ lib/ # Utilities, API clients, helpers
+├─ App.tsx # Main app wrapper
+└─ main.tsx # Vite entry point
 
 ## 🧪 Unit Testing
 
-```bash
 This project includes unit tests to ensure code reliability and maintainability.
 
 📦 Tech Stack
@@ -61,18 +58,17 @@ React Testing Library – For testing React components
 
 🚀 Running Tests
 
-# Run all unit tests
+```bash
 yarn test
-
 ```
 
 ## 🧪 Writing a New Test
 
-```bash
-Place your test files alongside your components or inside a __tests__ directory, using .test.tsx or .test.ts suffix.
+Place your test files alongside your components or inside a **tests** directory, using .test.tsx or .test.ts suffix.
 
 Example: my-component.test.tsx
 
+```bash
 import { render, screen } from '@testing-library/react';
 import MyComponent from './my-component';
 
