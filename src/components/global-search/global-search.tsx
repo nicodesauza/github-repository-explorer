@@ -105,42 +105,45 @@ export const GlobalSearch = (props: GlobalSearchProps) => {
         )}
       </form>
 
-      {isError ? (
-        <div
-          data-testid="error-response"
-          className="space-y-3 w-full flex flex-col justify-center items-center py-10"
-        >
-          <ServerCog color="red" className="w-24 h-24" />
-          <p className="text-red-600">Something went wrong.</p>
-        </div>
-      ) : isEmptyState ? (
-        <div
-          data-testid="empty-state"
-          className="space-y-3 w-full flex flex-col justify-center items-center py-10"
-        >
-          <Frown color="pink" className="w-24 h-24" />
-          <p>There is no data to be display</p>
-        </div>
-      ) : (
-        <Accordion type="single" collapsible={true} className="px-2">
-          {searchResult.map((item) => {
-            return (
-              <AccordionItem value={item.login} key={item.login}>
-                <AccordionTrigger className="rounded-none hover:cursor-pointer border-b-2 py-3">
-                  <div className="flex items-center gap-2 w-full">
-                    <div className="text-sm text-default font-semibold">
-                      {item.login}
+      <div className="mt-4">
+        {isError ? (
+          <div
+            data-testid="error-response"
+            className="space-y-3 w-full flex flex-col justify-center items-center py-10"
+          >
+            <ServerCog color="red" className="w-24 h-24" />
+            <p className="text-red-600">Something went wrong.</p>
+          </div>
+        ) : isEmptyState ? (
+          <div
+            data-testid="empty-state"
+            className="space-y-3 w-full flex flex-col justify-center items-center py-10"
+          >
+            <Frown color="pink" className="w-24 h-24" />
+            <p>There is no data to be display</p>
+          </div>
+        ) : (
+          <Accordion type="single" collapsible={true} className="">
+            {searchResult.map((item) => {
+              return (
+                <AccordionItem value={item.login} key={item.login}>
+                  <AccordionTrigger className="rounded-none px-3 hover:no-underline hover:bg-accent hover:cursor-pointer border-b-2 py-3">
+                    <div className="w-full ">
+                      <div className="text-sm text-gray-600 font-semibold">
+                        {item.login}
+                      </div>
+                      <div className="text-xs">{item.type}</div>
                     </div>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="max-h-96 overflow-auto">
-                  <UserRepo userLogin={item.login} />
-                </AccordionContent>
-              </AccordionItem>
-            );
-          })}
-        </Accordion>
-      )}
+                  </AccordionTrigger>
+                  <AccordionContent className="max-h-96 overflow-auto">
+                    <UserRepo userLogin={item.login} />
+                  </AccordionContent>
+                </AccordionItem>
+              );
+            })}
+          </Accordion>
+        )}
+      </div>
     </div>
   );
 };
